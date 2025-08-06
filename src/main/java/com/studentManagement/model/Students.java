@@ -1,10 +1,9 @@
 package com.studentManagement.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +18,8 @@ public class Students {
     private String name;
     private String email;
     private String department;
-    private LocalDate enrollmenDate;
+    private LocalDate enrollmentDate;
 
+	@OneToMany(mappedBy = "students", cascade = CascadeType.ALL)
+	private List<Documents> documents;
 }

@@ -9,8 +9,8 @@ import com.studentManagement.model.Students;
 public interface StudentService {
 	
 	public Students saveStudents(StudentBean bean) throws Exception;
-	public List<Students> findAllStudents();
-	public Optional<Students> findStudentById(Long studentId);
+	public List<Students> findAll();
+	public Optional<Students> findById(Long studentId);
 	public boolean deleteStudent(Long id);
 	public boolean updateStudent(Long id, StudentBean bean);
 	

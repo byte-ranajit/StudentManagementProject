@@ -22,21 +22,22 @@ public class StudentServiceImpl implements StudentService{
     @Autowired
     private StudentRepository repo;
 
+	@Autowired
 	private DocumentService service;
 
 	@Override
-	public List<Students> findAllStudents() {
+	public List<Students> findAll() {
 		return (List<Students>) repo.findAll();
 	}
 
 	@Override
-	public Optional<Students> findStudentById(Long studentId) {
-		return Optional.ofNullable(repo.findById(studentId)).orElseThrow();
+	public Optional<Students> findById(Long studentId) {
+		return Optional.of(repo.findById(studentId)).orElseThrow();
 	}
 
 	@Override
 	public boolean updateStudent(Long id, StudentBean bean) {
-		Optional<Students> optionalStudent = findStudentById(bean.getId());
+		Optional<Students> optionalStudent = findById(bean.getId());
 		if (optionalStudent.isPresent()) {
 			Students existingStudent = optionalStudent.get();
 			existingStudent.setEmail(bean.getEmail());
@@ -49,7 +50,6 @@ public class StudentServiceImpl implements StudentService{
 		} else {
 			return false;
 		}
-		
 	}
 
 	@Override

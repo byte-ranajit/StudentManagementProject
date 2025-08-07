@@ -24,19 +24,19 @@ public class studentController {
     private StudentService studentService;
 
     @PostMapping
-    public Students saveStudents(@RequestBody StudentBean bean) {
+    public Students saveStudents(@RequestBody StudentBean bean) throws Exception {
         return studentService.saveStudents(bean);
     }
     
     @GetMapping()
     public ResponseEntity<List<Students>> findAllStudents(){
-    	List<Students> students = studentService.findAllStudents();
+    	List<Students> students = studentService.findAll();
         return ResponseEntity.ok(students);
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<Students> findStudentById(@PathVariable Long id) {
-        return studentService.findStudentById(id)
+        return studentService.findById(id)
             .map(ResponseEntity::ok)
             .orElseGet(() -> ResponseEntity.notFound().build());
     }

@@ -23,7 +23,7 @@ public class DocumentsServiceImpl implements DocumentService{
 	}
 
 	@Override
-	public Documents saveDocument(Long studentId, MultipartFile file, DocumentType documentType) throws Exception {
+	public void saveDocument(Long studentId, MultipartFile file, DocumentType documentType) throws Exception {
 		Students student = studentRepository.findById(studentId)
 				.orElseThrow(() -> new Exception("Student not found"));
 		Documents document = new Documents();
@@ -33,7 +33,7 @@ public class DocumentsServiceImpl implements DocumentService{
 		document.setDocumentType(documentType);
 		document.setStudent(student);
 
-		return documentRepository.save(document);
-	}
+        documentRepository.save(document);
+    }
 
 }
